@@ -1,0 +1,33 @@
+
+/* Pagination styles*/
+.pagination{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 16px;
+    padding: 0 42px;
+    margin-bottom: 12px;
+}
+
+.pagination-link{
+    font-size: 24px;
+    line-height: 33px;
+    color: #474955;
+}
+
+.pagination-page{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 25px;
+    color: #474955;
+    margin-right: 14px;
+}
+
+.pagination-page:last-child{
+    margin-right: 0;
+}
+
+.pagination-page.active{
+    color: #7EBC3C;
+}
