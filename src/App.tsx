@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import Notes from "./pages/Notes"
 import './App.css'
-import {fetchNotes} from "./store/reducers/ActionCreators";
-import {useDispatch} from "react-redux";
-import {useTypedSelector} from "./hooks/useTypedSelector";
-import Loader from "./components/Loader/Loader";
+import {fetchNotes} from "./store/reducers/ActionCreators"
+import {useDispatch} from "react-redux"
+import {useTypedSelector} from "./hooks/useTypedSelector"
+import Loader from "./components/Loader/Loader"
 
 
 const App = () => {

@@ -15,6 +15,7 @@ const Notes: React.FC<INotes> = ({currentPage, setCurrentPage}) => {
     const {notes} = useTypedSelector(state => state.notes)
     const pageCount = Array(Math.floor(notes.length / 10)).fill(0)
     const [currentNotes, setCurrentNotes] = useState<INote[]>([])
+    const [searchValue, setSearchValue] = useState<string>("")
     // Sort type ask or desk
     const [sortType, setSortType] = useState<"ask" | "desk">("desk")
     const changePage = (number: number): void => {
@@ -32,8 +33,24 @@ const Notes: React.FC<INotes> = ({currentPage, setCurrentPage}) => {
             setCurrentNotes(notes.slice((pageCount.length * (currentPage - 1)), pageCount.length * (currentPage)))
         }
     }
+    const sortBySearch = (e?: any) => {
 
-   const sortData = (type: "string" | "number", title: string): void => {
+        if (e){
+            setSearchValue(e.target.value)
+        }
+        // @ts-ignore
+        if (searchValue){
+            const sortedNotes = notes.filter(note => {
+                if (note.title.includes(searchValue) || note.body.includes(searchValue)){
+                    return note
+                }
+            })
+            setCurrentNotes(sortedNotes.slice(0, 10))
+        }
+
+
+    }
+    const sortData = (type: "string" | "number", title: string): void => {
         if (type === "number"){
             if(sortType === "desk" ) {
 
@@ -57,17 +74,15 @@ const Notes: React.FC<INotes> = ({currentPage, setCurrentPage}) => {
                 setSortType("desk")
             }
         }
-   }
-
-
+    }
     useEffect(() => {
         setCurrentNotes(notes.slice((pageCount.length * (currentPage - 1)), pageCount.length * (currentPage)))
-    }, [currentPage, notes])
-
+        sortBySearch()
+    }, [currentPage, notes, searchValue])
     return (
         <div>
             <div className="container">
-                <AppInput placeholder="Поиск" width="631px" height="52px"/>
+                <AppInput placeholder="Поиск" width="631px" height="52px" searchValue={searchValue} setSearchValue={sortBySearch}/>
                 <Table notes={currentNotes} sortData={sortData}/>
                 <Pagination pageCount={pageCount} currentPage={currentPage} changePage={changePage} nextPage={nextPage} lastPage={lastPage}/>
             </div>
