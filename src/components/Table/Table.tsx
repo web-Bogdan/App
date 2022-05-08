@@ -1,9 +1,9 @@
 import React from 'react'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 import {ITable} from "./ITable"
 import "./Table.css"
 
-const Table: React.FC<ITable> = ({notes, sortData}) => {
+const Table: React.FC<ITable> = ({notes, sortData, pageCount}) => {
     return (
         <table className="table">
             <thead className="table-head">
@@ -14,11 +14,11 @@ const Table: React.FC<ITable> = ({notes, sortData}) => {
                 </tr>
             </thead>
             <tbody className="table-body">
-                {notes.length && notes.map(note => (
+                {pageCount.map((_, index) => (
                     <tr key={uuidv4()}>
-                        <td className="table-ceil ceil-id">{note.id}</td>
-                        <td className="table-ceil ceil-title">{note.title}</td>
-                        <td className="table-ceil ceil-description">{note.body}</td>
+                        <td className="table-ceil ceil-id">{notes[index]?.id || ""}</td>
+                        <td className="table-ceil ceil-title">{notes[index]?.title || ""}</td>
+                        <td className="table-ceil ceil-description">{notes[index]?.body || ""}</td>
                     </tr>
                 ))}
             </tbody>

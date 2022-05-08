@@ -1,10 +1,10 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import {IPagination} from "./IPagination"
 import "./Pagination.css"
-import {Link} from "react-router-dom";
+
 
 const Pagination: React.FC<IPagination> = ({pageCount, currentPage, changePage, nextPage, lastPage}) => {
-
     return (
         <div className="pagination">
             <Link className="pagination-link" to="/page1" onClick={lastPage}>Назад</Link>

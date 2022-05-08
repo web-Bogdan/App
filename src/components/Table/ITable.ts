@@ -1,6 +1,7 @@
-import {INote} from "../../store/reducers/NotesReducer";
+import {INote} from "../../store/reducers/NotesReducer"
 
 export interface ITable {
     notes: INote[],
-    sortData: (type: "string" | "number", title: string) => void
+    sortData: (type: "string" | "number", title: string) => void,
+    pageCount: number[]
 }

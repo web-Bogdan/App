@@ -5,7 +5,7 @@ import {fetchNotes} from "./store/reducers/ActionCreators"
 import {useDispatch} from "react-redux"
 import {useTypedSelector} from "./hooks/useTypedSelector"
 import Loader from "./components/Loader/Loader"
-import {Routes, Route} from "react-router";
+import {Routes, Route} from "react-router"
 
 
 const App = () => {
