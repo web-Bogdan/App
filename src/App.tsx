@@ -5,6 +5,7 @@ import {fetchNotes} from "./store/reducers/ActionCreators"
 import {useDispatch} from "react-redux"
 import {useTypedSelector} from "./hooks/useTypedSelector"
 import Loader from "./components/Loader/Loader"
+import {Routes, Route} from "react-router";
 
 
 const App = () => {
@@ -17,7 +18,9 @@ const App = () => {
     }, [])
   return (
       <div className="App">
-          {isLoading ? <Loader/> : <Notes currentPage={currentPage} setCurrentPage={setCurrentPage}/>}
+          <Routes>
+              <Route path={"*"} element={isLoading ? <Loader/> : <Notes currentPage={currentPage} setCurrentPage={setCurrentPage}/>}/>
+          </Routes>
       </div>
   )
 }

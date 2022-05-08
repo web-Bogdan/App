@@ -4,6 +4,7 @@ import Table from "../components/Table/Table"
 import Pagination from "../components/Pagination/Pagination"
 import {useTypedSelector} from "../hooks/useTypedSelector"
 import {INote} from "../store/reducers/NotesReducer"
+import {useNavigate} from "react-router";
 
 interface INotes {
     currentPage: number,
@@ -18,6 +19,7 @@ const Notes: React.FC<INotes> = ({currentPage, setCurrentPage}) => {
     const [searchValue, setSearchValue] = useState<string>("")
     // Sort type ask or desk
     const [sortType, setSortType] = useState<"ask" | "desk">("desk")
+    const navigate = useNavigate()
     const changePage = (number: number): void => {
         setCurrentPage(number)
     }
@@ -78,6 +80,7 @@ const Notes: React.FC<INotes> = ({currentPage, setCurrentPage}) => {
     useEffect(() => {
         setCurrentNotes(notes.slice((pageCount.length * (currentPage - 1)), pageCount.length * (currentPage)))
         sortBySearch()
+        navigate(String("/page" + currentPage))
     }, [currentPage, notes, searchValue])
     return (
         <div>

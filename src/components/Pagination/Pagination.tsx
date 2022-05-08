@@ -1,17 +1,19 @@
 import React from 'react'
 import {IPagination} from "./IPagination"
 import "./Pagination.css"
+import {Link} from "react-router-dom";
 
 const Pagination: React.FC<IPagination> = ({pageCount, currentPage, changePage, nextPage, lastPage}) => {
+
     return (
         <div className="pagination">
-            <a className="pagination-link" href="#" onClick={lastPage}>Назад</a>
+            <Link className="pagination-link" to="/page1" onClick={lastPage}>Назад</Link>
             <div className="pagination-pages">
                 {pageCount.length && pageCount.map((page, index) => (
-                    <a className={currentPage === index + 1 ? "pagination-page active" : "pagination-page"} onClick={() => changePage(index + 1)} key={index} href="#">{index + 1}</a>
+                    <Link className={currentPage === index + 1 ? "pagination-page active" : "pagination-page"} onClick={(e) => changePage(index + 1)} key={index} to={String("/page"+ (index + 1))}>{index + 1}</Link>
                 ))}
             </div>
-            <a className="pagination-link" href="#" onClick={nextPage}>Далее</a>
+            <Link className="pagination-link" to="/page10" onClick={nextPage}>Далее</Link>
         </div>
     )
 }
