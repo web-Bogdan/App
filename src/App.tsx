@@ -3,9 +3,12 @@ import Notes from "./pages/Notes"
 import './App.css'
 import {fetchNotes} from "./store/reducers/ActionCreators";
 import {useDispatch} from "react-redux";
+import {useTypedSelector} from "./hooks/useTypedSelector";
+import Loader from "./components/Loader/Loader";
 
 
 const App = () => {
+    const {isLoading} = useTypedSelector(state => state.notes)
     const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState<number>(1)
     useEffect( () => {
@@ -14,7 +17,7 @@ const App = () => {
     }, [])
   return (
       <div className="App">
-        <Notes currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+          {isLoading ? <Loader/> : <Notes currentPage={currentPage} setCurrentPage={setCurrentPage}/>}
       </div>
   )
 }
