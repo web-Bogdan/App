@@ -6,7 +6,6 @@ import Pagination from "../components/Pagination/Pagination"
 import {useTypedSelector} from "../hooks/useTypedSelector"
 import {INote} from "../store/reducers/NotesReducer"
 
-
 interface INotes {
     currentPage: number,
     setCurrentPage: (arg: number) => void

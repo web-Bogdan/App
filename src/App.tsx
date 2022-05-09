@@ -13,8 +13,7 @@ const App = () => {
     const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState<number>(1)
     useEffect( () => {
-        // @ts-ignore
-        dispatch(fetchNotes("https://jsonplaceholder.typicode.com/posts"))
+        dispatch<any>(fetchNotes("https://jsonplaceholder.typicode.com/posts"))
     }, [])
   return (
       <div className="App">
